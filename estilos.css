@@ -1,1 +1,166 @@
+/* Reset básico y configuración de fuentes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #eaf6ee; /* Verde pastel muy claro para el fondo */
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #4a6a5e; /* Un verde más oscuro para el título */
+    margin-bottom: 10px;
+}
+
+/* Estructura de la malla */
+.curriculum-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.semester {
+    background-color: #f7fcf9; /* Blanco muy suave para los contenedores */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    flex-basis: calc(25% - 20px); /* 4 columnas en desktop */
+    min-width: 250px;
+}
+
+.semester h2 {
+    font-size: 1.5rem;
+    color: #6a9c8b; /* Verde pastel para los títulos de semestre */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.course-list {
+    list-style: none;
+}
+
+.course {
+    background-color: #e6f0e9; /* Verde pastel claro para cada ramo */
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    font-size: 1rem;
+    position: relative;
+    border-left: 5px solid #a8d5b1; /* Borde sutil para un toque de color */
+}
+
+.course:hover:not(.approved):not(.blocked) {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los estados de los ramos */
+.course.approved {
+    background-color: #92d8a4; /* Verde más intenso al aprobar */
+    color: #385e44;
+    text-decoration: line-through;
+    opacity: 0.8;
+    pointer-events: none; /* No se puede hacer clic de nuevo */
+    border-left-color: #6cb87b;
+}
+
+.course.blocked {
+    background-color: #f0f5f1; /* Gris claro para los bloqueados */
+    color: #a8b2ac;
+    cursor: not-allowed;
+    border-left-color: #d1d9d4;
+    position: relative;
+}
+
+.course.blocked::after {
+    content: '🔒';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+}
+
+/* Notificaciones de requisitos */
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.notification {
+    background-color: #4a6a5e;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    min-width: 300px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.notification.success {
+    background-color: #5cb85c;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .semester {
+        flex-basis: calc(50% - 20px); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+
+    .curriculum-grid {
+        flex-direction: column;
+    }
+    
+    .semester {
+        flex-basis: 100%; /* 1 columna en móviles */
+    }
+}
 
